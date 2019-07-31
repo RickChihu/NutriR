@@ -5,7 +5,3 @@ function toggleSex(id) {
     document.getElementById('sexoM').checked = false
   }
 }
-
-function getValue(id) {
-  return parseFloat(document.getElementById(id).value)
-}

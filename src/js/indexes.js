@@ -1,5 +1,3 @@
-// var {getSex} = nodeRequire('./getCheckmark');
-
 function IMC() {
   var peso = getValue('peso')
   var talla = getValue('talla')
