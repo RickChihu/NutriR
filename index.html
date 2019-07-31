@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>NutriR</title>
+    <link rel="icon" 
+      type="image/png" 
+      href="./favicon.png" />
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="css/materialize.css" media="screen,projection"/>
+    <!--JavaScript at end of body for optimized loading-->
+    <style type="text/css">
+/*       body {
+        background-color: #e8f5e9
+      }*/
+      h3 {
+        color: #26a69a;
+        background-color: #e8f5e9;
+        margin-top: 0px !important;
+        padding: 1rem;
+      }
+/*      input {
+        color: red;
+      }*/
+    </style>
+  </head>
+  <body>
+    <h3 class="center-align"><img src="./favicon.png" style="width:30px;height:30px;">&nbsp;NutriR</h3>
+    <div class="row">
+      <!-- Tab 1 -->
+      <div class="col s6">
+        <ul class="collapsible" data-collapsible="accordion" fluid>
+          <!-- Datos del paciente -->
+          <li>
+            <div class="collapsible-header active">
+              <i class="material-icons">wc</i>
+              Datos del paciente
+            </div>
+
+            <div class="collapsible-body">
+              <div class="row">
+                <!-- Nombre -->
+                <div class="input-field col s6">
+                  <input id="nombre" type="text">
+                  <label for="nombre">Nombre</label>
+                </div>
+                <!-- Apellidos -->
+                <div class="input-field col s6">
+                  <input id="apellidos" type="text">
+                  <label for="apellidos">Apellidos</label>
+                </div>
+              </div>
+
+              <div class="row">
+                <!-- Edad -->
+                <div class="input-field col s6">
+                  <input placeholder="Años" id="edad" type="number">
+                  <label for="edad">Edad</label>
+                </div>
+                <!-- Sexo -->
+                <div class="col s6">
+                  Sexo
+                  <div class="row">
+                    <form action="#">
+                      <div class="col s6">
+                        <p>
+                          <label>
+                            <input type="checkbox" id="sexoH" onclick="toggleSex(id)" />
+                            <span>H</span>
+                          </label>
+                        </p>
+                      </div>
+                      <div class="col s6">
+                        <p>
+                          <label>
+                            <input type="checkbox" id="sexoM" onclick="toggleSex(id)" />
+                            <span>M</span>
+                          </label>
+                        </p>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <!-- Peso -->
+                <div class="input-field col s6">
+                  <input onblur="IMC()" placeholder="Kg" id="peso" type="number">
+                  <label for="peso">Peso</label>
+                </div>
+                <!-- Talla -->
+                <div class="input-field col s6">
+                  <input onblur="IMC()" placeholder="cm" id="talla" type="number">
+                  <label for="talla">Talla</label>
+                </div>
+              </div>
+            </div>
+          </li>
+
+          <!-- Circunferencias -->
+          <li>
+            <div class="collapsible-header"> 
+              <i class="material-icons">radio_button_unchecked</i>
+              Circunferencias
+            </div>
+            <div class="collapsible-body">
+
+              <div class="row">
+                <!-- Brazo Relajado -->
+                <div class="input-field col s3">
+                  <input onblur="#" placeholder="cm" id="brazoRelajado" type="number">
+                  <label for="brazoRelajado">Brazo Relajado</label>
+                </div>
+                <!-- Brazo Contraido -->
+                <div class="input-field col s3">
+                  <input onblur="#" placeholder="cm" id="brazoContraido" type="number">
+                  <label for="brazoContraido">Brazo Contraido</label>
+                </div>
+                <!-- Abdomen -->
+                <div class="input-field col s3">
+                  <input onblur="#" placeholder="cm" id="abdomen" type="number">
+                  <label for="abdomen">Abdomen</label>
+                </div>
+                <!-- Cintura -->
+                <div class="input-field col s3">
+                  <input onblur="ICC()" placeholder="cm" id="cintura" type="number">
+                  <label for="cintura">Cintura</label>
+                </div>
+              </div>
+
+              <div class="row">
+                <!-- Cadera -->
+                <div class="input-field col s3">
+                  <input onblur="ICC()" placeholder="cm" id="cadera" type="number">
+                  <label for="cadera">Cadera</label>
+                </div>
+                <!-- Muslo -->
+                <div class="input-field col s3">
+                  <input onblur="#" placeholder="cm" id="muslo" type="number">
+                  <label for="muslo">Muslo</label>
+                </div>
+                <!-- Pantorrilla -->
+                <div class="input-field col s3">
+                  <input onblur="#" placeholder="cm" id="pantorrilla" type="number">
+                  <label for="pantorrilla">Pantorrilla</label>
+                </div>
+              </div>
+            </div>
+          </li>
+
+          <!-- Diametros Oseos -->
+          <li>
+            <div class="collapsible-header"> 
+              <i class="material-icons">pie_chart_outlined</i>
+              Diametros Oseos
+            </div>
+            <div class="collapsible-body">
+              <div class="row">
+                <!-- Biestiloideo -->
+                <div class="input-field col s4">
+                  <input onblur="#" placeholder="cm" id="biestiloideo" type="number">
+                  <label for="biestiloideo">Biestiloideo</label>
+                </div>
+                <!-- Femoral -->
+                <div class="input-field col s4">
+                  <input onblur="#" placeholder="cm" id="femoral" type="number">
+                  <label for="femoral">Femoral</label>
+                </div>
+                <!-- Humeral -->
+                <div class="input-field col s4">
+                  <input onblur="#" placeholder="cm" id="humeral" type="number">
+                  <label for="humeral">Humeral</label>
+                </div>
+              </div>
+            </div>
+          </li>
+          <!-- Pliegues cutaneos -->
+
+          <li>
+            <div class="collapsible-header">
+              <i class="material-icons">settings_ethernet</i>
+              Pliegues cutaneos
+            </div>
+            <div class="collapsible-body">
+              <div class="row">
+                <!-- Bicep -->
+                <div class="input-field col s3">
+                  <input type="number" id="bicep" placeholder="mm">
+                  <label for="bicep">Bicep</label>
+                </div>
+                <!-- Tricep -->
+                <div class="input-field col s3">
+                  <input type="number" id="tricep" placeholder="mm">
+                  <label for="tricep">Tricep</label>
+                </div>
+                <!-- Sub Escapular -->
+                <div class="input-field col s3">
+                  <input type="number" id="subEscapular" placeholder="mm">
+                  <label for="subEscapular">Sub Escapular</label>
+                </div>
+                <!-- Cresta Iliaca -->
+                <div class="input-field col s3">
+                  <input type="number" id="crestaIliaca" placeholder="mm">
+                  <label for="crestaIliaca">Cresta Iliaca</label>
+                </div>
+              </div>
+              <div class="row">
+                <!-- Abdominal -->
+                <div class="input-field col s3">
+                  <input type="number" id="abdominal" placeholder="mm">
+                  <label for="abdominal">Abdominal</label>
+                </div>
+                <!-- Supra Espinal -->
+                <div class="input-field col s3">
+                  <input type="number" id="supraEspinal" placeholder="mm">
+                  <label for="supraEspinal">Supra Espinal</label>
+                </div>
+                <!-- Muslo Frontal -->
+                <div class="input-field col s3">
+                  <input type="number" id="musloFrontal" placeholder="mm">
+                  <label for="musloFrontal">Muslo Frontal</label>
+                </div>
+                <!-- Pantirrilla Medial -->
+                <div class="input-field col s3">
+                  <input type="number" id="pantorrillaMedial" placeholder="mm">
+                  <label for="pantorrillaMedial">Pantirrilla Medial</label>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <!-- Tab 2 -->
+      <div class="col s6">
+        <ul class="collapsible" data-collapsible="accordion">
+
+          <!-- Índices -->
+          <li>
+            <div class="collapsible-header active">
+              <i class="material-icons">assessment</i>
+              Índices
+            </div>
+            <div class="collapsible-body">
+              <!-- IMC -->
+              <div class="row">
+                <div class="input-field col s6">
+                  <input disabled placeholder="Talla y Peso" id="imc" type="number">
+                  <label for="imc">Masa Corporal</label>
+                </div>
+                <div class="input-field col s6">
+                  <input disabled id="imcTexto" type="text">
+                </div>
+              </div>
+              <!-- ICC -->
+              <div class="row">
+                <div class="input-field col s6">
+                  <input disabled placeholder="Cintura y Cadera" id="icc" type="number">
+                  <label for="icc">Cintura Cadera</label>
+                </div>
+                <div class="input-field col s6">
+                  <input disabled id="iccTexto" type="text">
+                </div>
+              </div>
+              <!-- Peso ideal -->
+              <div class="row">
+                <div class="input-field col s6">
+                  <input onblur="pesoIdeal()" id="imcIdeal" type="text">
+                  <label for="imcIdeal">IMC Deseado</label>
+                </div>
+                <div class="input-field col s6">
+                  <input disabled placeholder="Talla y IMC Deseado" id="pesoIdeal" type="number">
+                  <label for="pesoIdeal">Peso Ideal</label>
+                </div>
+              </div>
+            </div>
+          </li>
+
+          <!-- Gasto energético -->
+          <li>
+            <div class="collapsible-header">
+              <i class="material-icons">rowing</i>
+              Gasto energético
+            </div>
+            <div class="collapsible-body">
+              Gasto energético basal<br>
+              Efecto Termogénico de los alimentos<br>
+              Factor de actividad física<br>
+              Gasto energético total<br>
+            </div>
+          </li>
+
+          <!-- Composición Corporal -->
+          <li>
+            <div class="collapsible-header">
+              <i class="material-icons">dashboard</i>
+              Composición Corporal
+            </div>
+            <div class="collapsible-body">
+              <!-- Porcentaje de Grasa -->
+              <div class="row">
+                Fórmulas de % de Grasa
+                <form action="#">
+                  <div class="col s2">
+                    <p>
+                      <label>
+                        <input type="checkbox" id="Siri" onclick="#" />
+                        <span>Brozek</span>
+                      </label>
+                    </p>
+                  </div>
+                  <div class="col s2">
+                    <p>
+                      <label>
+                        <input type="checkbox" id="Brozek" onclick="#" />
+                        <span>Siri</span>
+                      </label>
+                    </p>
+                  </div>
+                </form>
+                <div class="input-field col s4">
+                  <input disabled placeholder="Selecciona una fórmula" id="porcentajeGrasa" type="number">
+                  <label for="porcentajeGrasa">Porcentaje de Grasa</label>
+                </div>
+                <div class="input-field col s4">
+                  <input disabled id="porcentajeGrasaTexto" type="text">
+                </div>
+              </div>
+              <!-- Porcentaje de Agua -->
+              <div class="row">
+                Fórmulas de % de Agua
+                <form action="#">
+                  <div class="col s2">
+                    <p>
+                      <label>
+                        <input type="checkbox" id="Siri" onclick="#" />
+                        <span>Watson</span>
+                      </label>
+                    </p>
+                  </div>
+                  <div class="col s2">
+                    <p>
+                      <label>
+                        <input type="checkbox" id="Brozek" onclick="#" />
+                        <span>Hume-Weyers</span>
+                      </label>
+                    </p>
+                  </div>
+                </form>
+                <div class="input-field col s4">
+                  <input disabled placeholder="Selecciona una fórmula" id="porcentajeAgua" type="number">
+                  <label for="porcentajeAgua">Porcentaje de Agua</label>
+                </div>
+                <div class="input-field col s4">
+                  <input disabled id="porcentajeAguaTexto" type="text">
+                </div>
+              </div>
+              <!-- Porcentajes de masa -->
+              <div class="row">
+                <div>Porcentajes de Masa</div>
+                <div class="input-field col s2">
+                  <input disabled placeholder=" " id="masaMuscular" type="number">
+                  <label for="masaMuscular">Muscular</label>
+                </div>
+                <div class="input-field col s3">
+                  <input disabled id="masaMuscularTexto" type="text">
+                </div>
+                <div class="input-field col s2">
+                  <input disabled placeholder=" " id="masaOsea" type="number">
+                  <label for="masaOsea">Ósea</label>
+                </div>
+                <div class="input-field col s3">
+                  <input disabled id="masaMuscularTexto" type="text">
+                </div>
+                <div class="input-field col s2">
+                  <input disabled placeholder=" " id="masaResidual" type="number">
+                  <label for="masaResidual">Residual</label>
+                </div>
+              </div>
+           </div>
+          <li>
+
+          <!-- Somatotipo -->
+          <li>
+            <div class="collapsible-header">
+              <i class="material-icons">accessibility_new</i>
+              Somatotipo
+            </div>
+            <div class="collapsible-body">
+              <div class="row">
+                <div class="input-field col s4">
+                  <input disabled placeholder=" " id="endomorfo" type="number">
+                  <label>Endomorfo</label>
+                </div>
+                <div class="input-field col s4">
+                  <input disabled placeholder=" " id="mesomorfo" type="number">
+                  <label>Mesomorfo</label>
+                </div>
+                <div class="input-field col s4">
+                  <input disabled placeholder=" " id="ectomorfo" type="number">
+                  <label>Ectomorfo</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s6">
+                  <input disabled placeholder=" " id="x" type="number">
+                  <label for="masaMuscular">X</label>
+                </div>
+                <div class="input-field col s6">
+                  <input disabled placeholder=" " id="y" type="number">
+                  <label for="masaOsea">Y</label>
+                </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+   <!--  <script>
+      // You can also require other files to run in this process.
+      require('../renderer.js')</script> -->
+    <!-- THelpers -->
+    <script type="text/javascript">
+      function toggleSex(id) {
+        if(id === 'sexoM'){
+          document.getElementById('sexoH').checked = false
+        } else if (id === 'sexoH'){
+          document.getElementById('sexoM').checked = false
+        }
+      }
+
+      function getValue(id) {
+        return parseFloat(document.getElementById(id).value)
+      }
+
+      function getSex() {
+        if(document.getElementById('sexoH').checked) {
+          return 'H'
+        }
+        else if (document.getElementById('sexoM').checked) {
+          return 'M'
+        }
+      }
+    </script>
+    <!-- Fórmulas -->
+    <script type="text/javascript">
+      function IMC(){
+        var peso = getValue('peso')
+        var talla = getValue('talla')
+        talla = talla/100
+        var imc = peso / (talla * talla)
+        var texto = ''
+        if (imc < 16) {
+          texto = "Delgadez severa"
+        } else if (imc < 17){
+          texto = "Delgadez moderada"
+        } else if (imc < 18.5){
+          texto = "Delgadez aceptable"
+        } else if (imc < 25){
+          texto = "Normal"
+        } else if (imc < 30){
+          texto = "Preobeso"
+        } else if (imc < 35){
+          texto = "Obeso 1"
+        } else if (imc < 40){
+          texto = "Obeso 2"
+        } else {
+          texto = "Obeso 3"
+        }
+        document.getElementById('imc').value = imc.toFixed(2)
+        if (imc) {
+          document.getElementById('imcTexto').value = texto
+        }
+      }
+      function ICC() {
+        var cintura = getValue('cintura')
+        var cadera = getValue('cadera')
+        var icc = cintura / cadera
+        var texto = ''
+        document.getElementById('icc').value = icc.toFixed(2)
+        if (getSex() === 'H') {
+          if (icc > .95){
+            texto = 'Obesidad central'
+          } else {
+            texto = 'Obesidad generalizada'
+          }
+        }
+        if (getSex() === 'M') {
+          if (icc > .80){
+            texto = 'Obesidad central'
+          } else {
+            texto = 'Obesidad generalizada'
+          }
+        }
+        if (icc){
+          document.getElementById('iccTexto').value = texto
+        }
+      }
+      function pesoIdeal() {
+        var talla = getValue('talla')
+        var imcIdeal = getValue('imcIdeal')
+        var pesoIdeal = (talla * talla * imcIdeal) / 10000
+        document.getElementById('pesoIdeal').value = pesoIdeal.toFixed(2)
+      }
+    </script>
+    <!-- JS & JQuery Import -->
+    <script
+      type="text/javascript"
+      src="./js/materialize.js"></script>
+    <script>
+      // Before your jquery import and you're good to go.
+      delete window.module</script>
+    <script
+      src="./js/jquery-2.1.1.min.js"
+      onload="window.$ = window.jQuery = module.exports"></script>
+    <script
+      type="text/javascript"
+      src="./js/materialize.min.js"></script>
+  </body>
+</html>
